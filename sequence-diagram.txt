@@ -1,0 +1,63 @@
+Usecase 1 (v1). Geld opnemen
+Deze usecasebeschrijving geeft aan wat de gebruiker doet met het systeem
+
+─ Pinner doet pas in paslezer
+─ Pinner typt pin
+─ Pinner typt bedrag
+─ Pinner haalt pas uit lezer
+─ Systeem geeft bankbiljetten
+
+Usecase 1 (v2). Geld opnemen
+Deze usecasebeschrijving geeft daarnaast duidelijker aan wat het systeem doet
+
+─ Pinner doet pas in paslezer
+─ Systeem vraagt pin
+─ Pinner typt pin
+─ Systeem checkt pin
+─ Systeem vraagt bedrag
+─ Pinner typt bedrag
+─ Systeem leest iban van pas
+─ Systeem checkt bedrag
+─ Pinner haalt pas uit lezer
+─ Systeem geeft bankbiljetten
+
+
+Sequencediagram 1. Geld opnemen
+
+ ┌────────┐        ┌────────┐          ┌───────────┐        ┌───────────┐   ┌─────────────┐   ┌───────┐
+ │ pinner │        │  gui   │          │ controller│        │ paslezer  │   │ cassette    │   │ bank  │
+ │ (actor)│        │ :GUI   │          │:Controller│        │:CardReader│   │:CashCassette│   │:Bank  │
+ └───┬────┘        └───┬────┘          └────┬──────┘        └─────┬─────┘   └─────┬───────┘   └───┬───┘
+     │                 │                    │                     │               │               │ 
+     █── pas in lezer ─────────────────────>█                     │               │               │
+     █                 │                    █                     │               │               │
+     █                 █<──── leesPin() ────█                     │               │               │
+     █── typ pin ─────>█                    █                     │               │               │
+     █                 █........ pin ......>█                     │               │               │
+     █                 │                    █                     │               │               │
+     █                 │                    █── checkPin(pin) ───>█               │               │
+     █                 │                    █<........ ok? .......█               │               │
+     █                 │                    █                     │               │               │
+     █                 █<── leesBedrag() ───█                     │               │               │
+     █── typ bedrag ──>█                    █                     │               │               │
+     █                 █...... bedrag .....>█                     │               │               │
+     █                 │                    █                     │               │               │
+     █                 │                    █──── getIBAN() ─────>█               │               │
+     █                 │                    █<....... iban .......█               │               │
+     █                 │                    █                     │               │               │
+     █                 │                    █                     │               │               │
+     █                 │                    █─────── checkBedrag(bedrag) ────────>█               │
+     █                 │                    █<................ ok? ...............█               │
+     █                 │                    █                     │               │               │
+     █                 │                    █                     │               │               │
+     █                 │                    █─────── checkBedrag(iban, bedrag) ──────────────────>█
+     █                 │                    █<................ ok? ...............................█
+     █── pak pas ─────>│                    █                     │               │               │
+     █                 │                    █                     │               │               │
+     █                 │                    █─────── geefBedrag(bedrag) ─────────>█               │
+     █                 │                    █<................ ok? ...............█               │
+     █── pak geld ────>│                    █                     │               │               │
+     │                 │                    █                     │               │               │
+     │                 │                    █─────── schrijfAf(bedrag) ──────────────────────────>█
+     │                 │                    │                     │               │               │
+

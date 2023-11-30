@@ -174,6 +174,9 @@ $controller = new Controller;
         <?php echo $controller->run(); ?>
     </p>
 
+    <p>
+        <a href="https://github.com/spijkerbak/geldmaat">sources op github</a>
+    </p>
 </body>
 
 </html>
