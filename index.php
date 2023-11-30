@@ -175,7 +175,10 @@ $controller = new Controller;
     </p>
 
     <p>
-        <a href="https://github.com/spijkerbak/geldmaat">sources op github</a>
+        <a target="class-diagram" href="class-diagram.svg"><img height="100" src="class-diagram.svg" alt="class diagram"
+                title="class diagram"></a>
+        <a target="github" href="https://github.com/spijkerbak/geldmaat"><img src="github-mark.svg" height="100" alt="sources op github"
+                title="sources op github"></a>
     </p>
 </body>
 
